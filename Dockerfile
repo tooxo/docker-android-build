@@ -1,14 +1,26 @@
 # Build Android Apps in docker
 # Build Tools: v26.0.2
 # Platforms: 26, 27
+# emulator for x64_64 systems
+
+#build with: docker build -t trion/android-build .
 
 FROM openjdk:8-jdk
 
 MAINTAINER trion development GmbH "info@trion.de"
 LABEL maintainer trion development GmbH "info@trion.de"
 
-ENV SDK_TOOLS_VERSION="3859397" NDK_VERSION=r17b ANDROID_HOME="/sdk" \
-  ANDROID_NDK_HOME="/ndk" PATH="$PATH:${ANDROID_HOME}/tools" LANG=en_US.UTF-8
+ENV SDK_TOOLS_VERSION="3859397" \
+  NDK_VERSION=r17b \
+  ANDROID_HOME="/sdk" \
+  ANDROID_NDK_HOME="/ndk" \
+  ANDROID_EMULATOR_EXTRA_ARGS="-skin 480x800 -noaudio -no-boot-anim -no-window" \
+  PATH="$PATH:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools/bin:${ANDROID_HOME}/tools/proguard/bin:${ANDROID_HOME}/tools" \
+  ABI="armeabi-v7a" \
+  TARGET="android-25" \
+  TAG="google_apis" \
+  NAME="Docker" \
+  LANG=en_US.UTF-8
 
 # install necessary packages
 RUN apt-get update && apt-get install -qqy --no-install-recommends \
@@ -58,3 +70,6 @@ RUN mkdir /tmp/android-ndk && \
     mv ./android-ndk-${NDK_VERSION} ${ANDROID_NDK_HOME} && \
     cd ${ANDROID_NDK_HOME} && \
     rm -rf /tmp/android-ndk
+
+COPY entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
