@@ -9,8 +9,8 @@ LABEL maintainer trion development GmbH "info@trion.de"
 
 #note: build-tools version in path must be synced to tools installed in pkg.txt
 ENV SDK_TOOLS_VERSION="3859397" NDK_VERSION=r17b ANDROID_HOME="/sdk" \
-  ANDROID_NDK_HOME="/ndk" PATH="$PATH:${ANDROID_HOME}/tools" \
-  PATH="$PATH:${ANDROID_HOME}/build-tools/27.0.3/" \
+  ANDROID_NDK_HOME="/ndk" PATH="$PATH:/sdk/tools" \
+  PATH="$PATH:/sdk/build-tools/27.0.3/" \
    LANG=en_US.UTF-8
 
 # install necessary packages
