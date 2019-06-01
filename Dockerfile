@@ -1,5 +1,7 @@
 # Build Android Apps in docker
-# Build Tools: v26.0.2
+# Build Tools: 27.0.3
+# SDK Version v26.0.2
+# NDK r17b
 # Platforms: 26, 27
 
 FROM openjdk:8-jdk
