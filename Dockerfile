@@ -38,7 +38,7 @@ COPY pkg.txt /
 # Install repo tool version 1.23 (https://source.android.com/setup/build/downloading#installing-repo)
 # required tools, accept license
 RUN curl -s https://storage.googleapis.com/git-repo-downloads/repo > /tmp/repo && \
-    echo "e147f0392686c40cfd7d5e6f332c6ee74c4eab4d24e2694b3b0a0c037bf51dc5  /tmp/repo" > /tmp/repo.sha265 && \
+    echo "d06f33115aea44e583c8669375b35aad397176a411de3461897444d247b6c220"  /tmp/repo" > /tmp/repo.sha265 && \
     sha256sum -c /tmp/repo.sha265 && \
     rm /tmp/repo.sha265 && \
     mv /tmp/repo /usr/bin/repo && \
