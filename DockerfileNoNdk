@@ -16,7 +16,7 @@ ENV SDK_TOOLS_VERSION="3859397" NDK_VERSION=r17b ANDROID_HOME="/sdk" \
    LANG=en_US.UTF-8
 
 # install necessary packages
-RUN apt-get update && apt-get install -qqy --no-install-recommends \
+RUN apt-get update && apt-get -qq install -y --no-install-recommends \
     apt-utils \
     locales \
     libc6-i386 \
@@ -53,5 +53,5 @@ RUN curl -s https://storage.googleapis.com/git-repo-downloads/repo > /tmp/repo &
 # Update sdk packages and install required packages
 RUN ${ANDROID_HOME}/tools/bin/sdkmanager --update && \
     while read -r pkg; do PKGS="${PKGS}${pkg} "; done < /sdk/pkg.txt && \
-      ${ANDROID_HOME}/tools/bin/sdkmanager ${PKGS}
+      ${ANDROID_HOME}/tools/bin/sdkmanager ${PKGS} > /dev/null
 
