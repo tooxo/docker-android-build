@@ -1,0 +1,13 @@
+language: minimal
+services:
+	- docker
+
+before_deploy:
+    - docker build . -t tooxo/docker-android-build:latest
+    - docker build . -f DockerfileNoNdk -t tooxo/docker-android-build:nondk
+
+deploy:
+    -   provider: script
+        script: bash -c 'echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin; docker push tooxo/docker-android-build:latest'
+    -   provider: script
+        script: bash -c 'echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin; docker push tooxo/docker-android-build:nondk'
