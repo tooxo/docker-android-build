@@ -44,7 +44,7 @@ RUN curl -s https://storage.googleapis.com/git-repo-downloads/repo > /tmp/repo &
     mv /tmp/repo /usr/bin/repo && \
     chmod a+x /usr/bin/repo && \
     curl -s https://dl.google.com/android/repository/sdk-tools-linux-${SDK_TOOLS_VERSION}.zip > /tools.zip && \
-    unzip /tools.zip -d /sdk && \
+    unzip -q /tools.zip -d /sdk && \
     rm -v /tools.zip && \
     mv /pkg.txt /sdk && \
     mkdir -p /root/.android && touch /root/.android/repositories.cfg && \
